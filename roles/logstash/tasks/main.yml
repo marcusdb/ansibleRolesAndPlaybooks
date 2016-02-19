@@ -1,0 +1,20 @@
+- name: install logstash apt key
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+
+- name: add logstash repository
+  apt_repository: repo='deb http://packages.elastic.co/logstash/2.2/debian stable main' state=present
+
+- name: install logstash
+  apt: name=logstash update_cache=yes
+
+- name: copy configuration
+  copy: >
+    src={{logstash.file.src}}
+    dest={{logstash.file.dest}}
+    owner=root
+    group=root
+    mode=0644
+
+- name: run logstash
+  service: name=logstash state=restarted enabled=yes
+

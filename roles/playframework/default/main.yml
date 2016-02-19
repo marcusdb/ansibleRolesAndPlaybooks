@@ -1,0 +1,3 @@
+playframework_applicationName: activator
+playframework_port: 9001
+playframework_applicationDir: /usr/local/application

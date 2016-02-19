@@ -1,0 +1,12 @@
+---
+# copy file to /etc/init.d
+# chmod +x /etc/init.d/play
+# chkconfig --add /etc/init.d/play
+# chkconfig play on
+- name: copy init.d file
+  template: src=files/activator.jn2 dest=/etc/init.d/play owner=root group=root mode=0751
+- name: install play activator
+  shell: "./activator update > /dev/null 2>&1 chdir={{playframework_applicationDir}}" 
+- name: install and start play service
+  service: name=play state=restarted enabled=yes
+

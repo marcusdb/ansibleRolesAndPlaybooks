@@ -1,0 +1,19 @@
+- name: Install Statsd Dependencies 
+  apt: name=git update_cache=yes  
+
+- name: Install statsd from GitHub
+  git: "repo=https://github.com/etsy/statsd.git dest=/opt/statsd update=no version={{ statsd_version }}"
+
+- name: Configure statsd
+  template: src=opt/statsd/local_config.js.j2 dest=/opt/statsd/local_config.js owner=root group=root mode=0644
+
+- name: copy supervisor carbon configuration
+  copy: >
+    src=files/supervisor/statsd.conf
+    dest=/etc/supervisor/conf.d/statsd.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: run supervisor
+  service: name=supervisor state=restarted enabled=yes

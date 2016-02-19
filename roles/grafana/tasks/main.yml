@@ -1,0 +1,12 @@
+- name: add grafana repository
+  apt_repository: repo='deb https://packagecloud.io/grafana/stable/debian/ wheezy main' state=present
+
+- name: install grafana apt key
+  apt_key: url=https://packagecloud.io/gpg.key state=present
+
+- name: install grafana
+  apt: name=grafana update_cache=yes
+  
+- name: run grafana
+  service: name=grafana-server state=restarted enabled=yes
+

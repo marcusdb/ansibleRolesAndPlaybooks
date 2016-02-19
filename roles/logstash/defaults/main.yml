@@ -1,0 +1,4 @@
+logstash:
+ file:
+  src: files/logstash-server.conf
+  dest: /etc/logstash/conf.d/default.conf

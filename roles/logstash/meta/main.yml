@@ -1,0 +1,12 @@
+dependencies:
+- role: common   
+- role: java
+  when: '"vagrant" not in group_names'
+- role: openJDKjava
+  when: '"vagrant" in group_names'
+- role: redis
+  when: '"statistics" in group_names'
+- role: elasticsearch
+  when: '"statistics" in group_names'
+#- role: kibana
+#  when: '"statistics_test" in group_names or "statistics" in group_names'  

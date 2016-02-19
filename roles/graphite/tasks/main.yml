@@ -1,0 +1,69 @@
+- name: install python-virtualenv 
+  apt: name=python-virtualenv 
+
+- name: install python-dev
+  apt: name=python-dev
+
+- name: install libffi-dev
+  apt: name=libffi-dev
+
+- name: install libssl-dev
+  apt: name=libssl-dev
+
+- name: install pip
+  easy_install: name=pip 
+
+- name: install requests[security]
+  pip: name=requests[security]
+
+- name: install twisted
+  pip: name=twisted version=11.1.0
+
+- name: install dependency
+  pip: name='https://github.com/graphite-project/ceres/tarball/master'
+
+- name: install whisper
+  pip: name=whisper
+
+- name: install carbon
+  pip: name=carbon
+
+- name: copy carbon config file
+  template: src=files/carbon/carbon.conf.j2 dest=/opt/graphite/conf/carbon.conf  owner=root group=root mode=0644
+
+- name: copy carbon storage config file
+  template: src=files/carbon/storage-schemas.conf.j2 dest=/opt/graphite/conf/storage-schemas.conf  owner=root group=root mode=0644  
+
+- name: install graphite-api dependency gunicorn
+  pip: name=gunicorn
+
+- name: install graphite-api
+  pip: name=graphite-api
+
+- name: copy graphite-api config file
+  template: src=files/graphite-api/graphite-api.yaml.j2 dest=/etc/graphite-api.yaml  owner=root group=root mode=0644  
+
+
+- name: copy supervisor graphite-api configuration
+  copy: >
+    src=files/supervisord/graphite-api.conf
+    dest=/etc/supervisor/conf.d/graphite-api.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: copy supervisor carbon configuration
+  copy: >
+    src=files/supervisord/carbon.conf
+    dest=/etc/supervisor/conf.d/carbon.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: run supervisor
+  service: name=supervisor state=stopped enabled=yes
+
+- name: run supervisor
+  service: name=supervisor state=started enabled=yes  
+
+

@@ -1,0 +1,8 @@
+- name: add redis-server repository
+  apt_repository: repo='ppa:rwky/redis' 
+
+- name: install redis-server
+  apt: name=redis-server update_cache=yes
+
+- name: run redis-server
+  service: name=redis-server state=restarted enabled=yes

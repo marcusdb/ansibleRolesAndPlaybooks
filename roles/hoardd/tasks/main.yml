@@ -1,0 +1,26 @@
+#https://github.com/marcusdb/hoardd
+
+- name: Install git
+  apt: name=git update_cache=yes 
+
+- name: Install hoardd from GitHub
+  git: "repo=https://github.com/marcusdb/hoardd dest=/opt/hoardd update=no "
+
+- name: NPM Install hoardd
+  npm: path=/opt/hoardd
+
+- name: Configure hoardd
+  template: src=files/hoardd/config.json.j2 dest=/opt/hoardd/config.json owner=root group=root mode=0644
+
+- name: copy hoardd carbon configuration
+  copy: >
+    src=files/supervisor/hoardd.conf
+    dest=/etc/supervisor/conf.d/hoardd.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: run supervisor
+  service: name=supervisor state=restarted enabled=yes  
+
+

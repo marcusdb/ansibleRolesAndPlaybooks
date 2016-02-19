@@ -1,0 +1,2 @@
+- name: install supervisor
+  apt: name=supervisor

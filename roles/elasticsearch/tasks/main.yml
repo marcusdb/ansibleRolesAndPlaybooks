@@ -1,0 +1,23 @@
+- name: install elasticsearch apt key
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+
+- name: add elasticsearch repository
+  apt_repository: repo='deb http://packages.elastic.co/elasticsearch/2.x/debian stable main' state=present
+
+- name: install elasticsearch
+  apt: name=elasticsearch update_cache=yes
+
+- name: make sure there is a DATA directory
+  file: path=/data state=directory mode=0755
+
+#- name: copy configuration
+#  copy: >
+#    src={{elasticsearch.file.src}}
+#    dest=/etc/elasticsearch/elasticsearch.yml
+#    owner=root
+#    group=root
+#    mode=0644
+
+- name: run elasticsearch
+  service: name=elasticsearch state=restarted enabled=yes
+

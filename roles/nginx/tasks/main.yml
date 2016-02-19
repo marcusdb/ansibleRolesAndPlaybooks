@@ -1,0 +1,5 @@
+- name: install nginx
+  apt: name=nginx update_cache=yes
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes   

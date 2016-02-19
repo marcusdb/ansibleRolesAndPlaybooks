@@ -1,0 +1,17 @@
+- name: copy ulimits config file
+  copy: >
+    src=files/limits.conf 
+    dest=/etc/security/limits.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: copy 90-nproc config file
+  copy: >
+    src=files/90-nproc.conf 
+    dest=/etc/security/limits.d/90-nproc.conf
+    owner=root
+    group=root
+    mode=0644
+
+

@@ -1,0 +1,12 @@
+---
+- name: Configure statistics machine
+  hosts: statistics
+  become: yes
+  roles:
+  - role: hoardd
+  - role: logstash
+  - role: kibana
+  - role: grafana
+  - role: graphite
+  - role: statsd
+...
