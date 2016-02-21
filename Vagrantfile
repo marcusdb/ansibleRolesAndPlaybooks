@@ -1,27 +1,67 @@
 
+
+
 Vagrant.configure(2) do |config|
-  
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.network :private_network, ip:"192.168.50.4"
-  config.vm.network "forwarded_port", guest: 8082, host: 8082
-  config.vm.network "forwarded_port", guest: 5601, host: 5601
-  config.vm.network "forwarded_port", guest: 9200, host: 9200
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
-  config.vm.provider "virtualbox" do |vb|
-  	vb.memory = 4096
-  	vb.cpus = 2
-    
 
-    # change the network card hardware for better performance
-    vb.customize ["modifyvm", :id, "--nictype1", "virtio" ]
-    vb.customize ["modifyvm", :id, "--nictype2", "virtio" ]
+  config.vm.define "queue1" do |queue1|
+    queue1.vm.box = "ubuntu/trusty64"
+    queue1.vm.network :private_network, ip:"192.168.50.2"
+    queue1.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
+    queue1.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 1
+      # change the network card hardware for better performance
+      vb.customize ["modifyvm", :id, "--nictype1", "virtio" ]
+      vb.customize ["modifyvm", :id, "--nictype2", "virtio" ]
 
-    # suggested fix for slow network performance
-    # see https://github.com/mitchellh/vagrant/issues/1807
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]      
+      # suggested fix for slow network performance
+      # see https://github.com/mitchellh/vagrant/issues/1807
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]      
+    end
   end
+
+  config.vm.define "queue2" do |queue2|
+    queue2.vm.box = "ubuntu/trusty64"
+    queue2.vm.network :private_network, ip:"192.168.50.3"
+    queue2.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
+    queue2.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 1
+      # change the network card hardware for better performance
+      vb.customize ["modifyvm", :id, "--nictype1", "virtio" ]
+      vb.customize ["modifyvm", :id, "--nictype2", "virtio" ]
+
+      # suggested fix for slow network performance
+      # see https://github.com/mitchellh/vagrant/issues/1807
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]      
+    end
+  end
+
+  config.vm.define "stats" do |stats|
+    stats.vm.box = "ubuntu/trusty64"
+    stats.vm.network :private_network, ip:"192.168.50.1"
+    stats.vm.network "forwarded_port", guest: 8082, host: 8082
+    stats.vm.network "forwarded_port", guest: 5601, host: 5601
+    stats.vm.network "forwarded_port", guest: 9200, host: 9200
+    stats.vm.network "forwarded_port", guest: 3000, host: 3000    
+    stats.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
+    stats.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 1
+      # change the network card hardware for better performance
+      vb.customize ["modifyvm", :id, "--nictype1", "virtio" ]
+      vb.customize ["modifyvm", :id, "--nictype2", "virtio" ]
+
+      # suggested fix for slow network performance
+      # see https://github.com/mitchellh/vagrant/issues/1807
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]      
+    end
+  end
+  
+
 
   
 

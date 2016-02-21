@@ -1,0 +1,7 @@
+---
+- name: Configure queue machines machine
+  hosts: queue
+  become: yes
+  roles:
+  - role: rabbitmq
+...

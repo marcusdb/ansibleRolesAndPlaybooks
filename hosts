@@ -1,6 +1,11 @@
+[queue]
+queue1 ansible_ssh_host=192.168.50.2 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue1/virtualbox/private_key
+queue2 ansible_ssh_host=192.168.50.3 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue2/virtualbox/private_key
 
 [statistics]
-testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/stats/virtualbox/private_key
 
 [vagrant]
-testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/stats/virtualbox/private_key
+queue1 ansible_ssh_host=192.168.50.2 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue1/virtualbox/private_key
+queue2 ansible_ssh_host=192.168.50.3 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue2/virtualbox/private_key
