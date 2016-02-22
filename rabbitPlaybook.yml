@@ -3,5 +3,5 @@
   hosts: queue
   become: yes
   roles:
-  - role: rabbitmq
+  - role: rabbitmq_server
 ...

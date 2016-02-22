@@ -1,11 +1,21 @@
 [queue]
-queue1 ansible_ssh_host=192.168.50.2 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue1/virtualbox/private_key
+queue1 ansible_ssh_host=192.168.50.2 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue1/virtualbox/private_key 
 queue2 ansible_ssh_host=192.168.50.3 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue2/virtualbox/private_key
 
 [statistics]
-testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/stats/virtualbox/private_key
+stats ansible_ssh_host=192.168.50.4 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/stats/virtualbox/private_key
 
 [vagrant]
-testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/stats/virtualbox/private_key
+stats ansible_ssh_host=192.168.50.4 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/stats/virtualbox/private_key
 queue1 ansible_ssh_host=192.168.50.2 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue1/virtualbox/private_key
 queue2 ansible_ssh_host=192.168.50.3 ansible_ssh_port=22 ansible_ssh_private_key_file=.vagrant/machines/queue2/virtualbox/private_key
+
+[queue:vars]
+rabbitmq_ha_enabled = true
+rabbitmq_ha_pattern =.*
+rabbitmq_ha_mode =all
+rabbitmq_erlang_cookie=9qa2ws3ed
+rabbitmq_create_cluster=true
+rabbitmq_cluster_master=queue1
+
+
