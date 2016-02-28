@@ -1,0 +1,12 @@
+#https://www.mongodb.org/static/pgp/server-3.2.asc?_ga=1.60543983.315146303.1436977520
+
+#deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2
+
+- name: install mongodb apt key
+  apt_key: url=https://www.mongodb.org/static/pgp/server-3.2.asc state=present
+
+- name: add mongodb repository
+  apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 stable main' state=present
+
+- name: install mongodb
+  apt: name=mongodb update_cache=yes
