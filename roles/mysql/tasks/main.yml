@@ -1,3 +1,0 @@
-
-- name: install mysql-server
-  apt: name=mysql-server update_cache=yes
