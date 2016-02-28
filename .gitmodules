@@ -1,9 +1,6 @@
 [submodule "roles/rabbitmq_server"]
 	path = roles/rabbitmq_server
 	url = https://github.com/marcusdb/ansible-rabbitmq
-[submodule "roles/mysql"]
-	path = roles/mysql
-	url = https://github.com/bennojoy/mysql
 [submodule "roles/ansible-flyway"]
 	path = roles/ansible-flyway
 	url = https://github.com/marcusdb/ansible-flyway
