@@ -1,6 +1,3 @@
 
-- name: add mysql-server repository
-  apt_repository: repo='deb http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb stable main' state=present
-
 - name: install mysql-server
   apt: name=mysql-server update_cache=yes
