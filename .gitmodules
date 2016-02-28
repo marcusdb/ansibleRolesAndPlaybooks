@@ -7,3 +7,6 @@
 [submodule "roles/mysql"]
 	path = roles/mysql
 	url = https://github.com/marcusdb/mysql
+[submodule "roles/mongodb"]
+	path = roles/mongodb
+	url = https://github.com/marcusdb/ansible-role-mongodb
