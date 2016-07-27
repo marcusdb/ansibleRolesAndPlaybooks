@@ -10,3 +10,6 @@ buildessential_packages:
   - ncurses-dev
   - gcc
   - libffi-dev
+  - python-virtualenv
+  - libssl-dev
+  - python-dev
