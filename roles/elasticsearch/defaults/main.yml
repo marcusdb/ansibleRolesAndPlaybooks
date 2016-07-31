@@ -1,0 +1,5 @@
+elasticsearch:
+  file:
+    src: files/elasticsearch.yml
+  log:
+    src: files/logging.yml

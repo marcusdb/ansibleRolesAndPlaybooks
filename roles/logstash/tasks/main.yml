@@ -8,12 +8,7 @@
   apt: name=logstash update_cache=yes
 
 - name: copy configuration
-  copy: >
-    src={{logstash.file.src}}
-    dest={{logstash.file.dest}}
-    owner=root
-    group=root
-    mode=0644
+  template: src={{logstash.file.src}} dest={{logstash.file.dest}} owner=root group=root mode=0644
 
 - name: run logstash
   service: name=logstash state=restarted enabled=yes

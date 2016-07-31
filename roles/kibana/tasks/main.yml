@@ -2,7 +2,7 @@
   apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
 
 - name: add kibana repository
-  apt_repository: repo='deb http://packages.elastic.co/kibana/4.4/debian stable main' state=present
+  apt_repository: repo='deb http://packages.elastic.co/kibana/4.5/debian stable main' state=present
 
 - name: install kibana
   apt: name=kibana update_cache=yes
@@ -10,8 +10,10 @@
 - name: run kibana
   service: name=kibana state=restarted enabled=yes
 
-- name: copy kibana nginx file
-  template: src=files/nginx/kibana.conf.j2 dest=/etc/nginx/conf.d/kibana.conf  owner=root group=root mode=0644
+- name: copy nginx config
+  template: src=files/nginx/kibana.conf.j2  dest='/etc/nginx/sites-available/kibana' owner=root group=root mode=0644  
+- name: activate nginx config
+  file: src='/etc/nginx/sites-available/kibana' dest='/etc/nginx/sites-enabled/kibana' owner=root group=root state=link
 
 - name: install htpasswd dependency
   apt: pkg=python-passlib state=latest install_recommends=yes
