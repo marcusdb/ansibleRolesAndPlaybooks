@@ -1,27 +1,18 @@
-upstream kibana {
-    server 127.0.0.1:5601 fail_timeout=0;
-}
-
 server {
-    server_name kibana;
+    server_name _;
     listen {{kibana_http_port}};
     root /opt/kibana/www;
 
     location /app/kibana {
-	auth_basic "Restricted Content";
-        auth_basic_user_file /etc/nginx/.htpasswd;
-        try_files $uri @kibana;
+       auth_basic "Restricted Content";
+       auth_basic_user_file /etc/nginx/.htpasswd;
+       proxy_pass http://localhost:5601;
     }
 
     location / {
-       auth_basic off;
-       allow all; # Allow all to see content
-       proxy_pass http://kibana; 
+       auth_basic "Restricted Content";
+       auth_basic_user_file /etc/nginx/.htpasswd;
+       proxy_pass http://localhost:5601;
     }
 
-    location @kibana {
-	auth_basic "Restricted Content";
-        auth_basic_user_file /etc/nginx/.htpasswd;
-        proxy_pass http://kibana;
-    }
 }
