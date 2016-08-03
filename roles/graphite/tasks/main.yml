@@ -10,6 +10,9 @@
 - name: install libssl-dev
   apt: name=libssl-dev
 
+- name: install libcairo2-dev
+  apt: name=libcairo2-dev
+
 - name: install pip
   easy_install: name=pip 
 
