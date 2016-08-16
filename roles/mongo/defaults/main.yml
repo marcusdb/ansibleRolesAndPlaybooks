@@ -1,0 +1,5 @@
+---
+mongo_dbpath: /var/lib/mongodb
+mongo_replSetName: replset
+mongo_enableMajorityReadConcern: "true"
+mongo_authorization: enabled

@@ -5,4 +5,10 @@
   apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse' state=present
 
 - name: install mongodb-org
-  apt: name=mongodb-org update_cache=yes  
+  apt: name=mongodb-org update_cache=yes
+
+- name: copy mongo conf file
+  template: src=templates/mongo.conf.j2 dest=/etc/mongod.conf owner=root group=root mode=0644
+
+- name: run mongod
+  service: name=mongod state=restarted enabled=yes  
