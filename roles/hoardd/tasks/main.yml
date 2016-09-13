@@ -4,7 +4,7 @@
   apt: name=git update_cache=yes 
 
 - name: Install hoardd from GitHub
-  git: "repo=https://github.com/marcusdb/hoardd dest=/opt/hoardd update=no "
+  git: "repo=https://github.com/marcusdb/hoardd dest=/opt/hoardd update=yes "
 
 - name: NPM Install hoardd
   npm: path=/opt/hoardd
