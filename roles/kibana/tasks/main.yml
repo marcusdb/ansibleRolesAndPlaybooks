@@ -11,9 +11,7 @@
   service: name=kibana state=restarted enabled=yes
 
 - name: copy nginx config
-  template: src=files/nginx/kibana.conf.j2  dest='/etc/nginx/sites-available/kibana' owner=root group=root mode=0644  
-- name: activate nginx config
-  file: src='/etc/nginx/sites-available/kibana' dest='/etc/nginx/sites-enabled/kibana' owner=root group=root state=link
+  template: src=files/nginx/kibana.conf.j2  dest='/etc/nginx/conf.d/kibana.conf' owner=root group=root mode=0644  
 
 - name: install htpasswd dependency
   apt: pkg=python-passlib state=latest install_recommends=yes
