@@ -17,7 +17,7 @@
   apt: pkg=python-passlib state=latest install_recommends=yes
 
 - name: set nginx/kibana password
-  htpasswd: path=/etc/nginx/.htpasswd name=rb_user password={{kibana_passwd}} owner=root group=root mode=0640
+  htpasswd: path=/etc/nginx/.htpasswd name=rb_user password={{kibana_passwd}} owner=nginx group=root mode=0640
 
 - name: restart nginx
   service: name=nginx state=restarted enabled=yes 
