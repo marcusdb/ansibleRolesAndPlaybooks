@@ -2,7 +2,7 @@
   apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
 
 - name: add logstash repository
-  apt_repository: repo='deb http://packages.elastic.co/logstash/2.2/debian stable main' state=present
+  apt_repository: repo='deb https://artifacts.elastic.co/packages/5.x/apt stable main' state=present
 
 - name: install logstash
   apt: name=logstash update_cache=yes
