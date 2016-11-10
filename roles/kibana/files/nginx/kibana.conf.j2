@@ -6,6 +6,8 @@ server {
     server_name kibana;
     listen {{kibana_http_port}};
     root /opt/kibana/www;
+    access_log  off;
+    error_log off;
 
     location /app/kibana {
     auth_basic "Restricted Content";
