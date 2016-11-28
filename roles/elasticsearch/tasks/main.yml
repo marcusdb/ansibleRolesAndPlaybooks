@@ -20,7 +20,7 @@
 
 - name: copy log configuration
   copy:
-   src={{elasticsearch.log.src}}
+   src={{elasticsearch.logfile.src}}
    dest=/etc/elasticsearch/logging.yml
    owner=root
    group=elasticsearch
