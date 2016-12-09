@@ -1,8 +1,8 @@
 - name: Install prerequisites
-  apt: name=python-software-properties state=present
+  apt: name=python-software-properties force=yes
 
 - name: add python repository
-  apt_repository: repo='ppa:fkrull/deadsnakes-python2.7' state=present
+  apt_repository: repo='ppa:fkrull/deadsnakes-python2.7' 
 
 - name: install python
-  apt: name=python2.7 update_cache=yes only_upgrade=yes
+  apt: name=python2.7 update_cache=yes force=yes
