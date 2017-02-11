@@ -31,6 +31,9 @@
 - name: install carbon
   pip: name=carbon
 
+- name: create graphite directory
+  file: path=/opt/graphite/conf state=directory mode=0755
+
 - name: copy carbon config file
   template: src=files/carbon/carbon.conf.j2 dest=/opt/graphite/conf/carbon.conf  owner=root group=root mode=0644
 
