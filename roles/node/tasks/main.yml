@@ -5,5 +5,5 @@
   apt_repository: repo='deb https://deb.nodesource.com/{{node_version}} trusty main' state=present
 
 - name: install node
-  apt: name=nodejs update_cache=yes
+  apt: name=nodejs state=latest update_cache=yes
 
