@@ -2,7 +2,10 @@
   apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
 
 - name: add nginx repository
-  apt_repository: repo='deb http://nginx.org/packages/ubuntu trusty nginx' state=present
+  apt_repository: repo='deb http://nginx.org/packages/ubuntu/ xenial nginx' state=present
+
+- name: add nginx repository
+  apt_repository: repo='deb-src http://nginx.org/packages/ubuntu/ xenial nginx' state=present  
 
 - name: install nginx
   apt: name=nginx update_cache=yes
