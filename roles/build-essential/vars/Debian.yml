@@ -13,3 +13,5 @@ buildessential_packages:
   - python-virtualenv
   - libssl-dev
   - python-dev
+  - python-pip
+
