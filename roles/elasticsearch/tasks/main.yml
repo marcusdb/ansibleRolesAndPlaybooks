@@ -5,7 +5,7 @@
   apt_repository: repo='deb https://artifacts.elastic.co/packages/5.x/apt stable main' state=present
 
 - name: install elasticsearch
-  apt: name=elasticsearch update_cache=yes
+  apt: name=elasticsearch state=latest update_cache=yes
 
 - name: make sure there is a DATA directory
   file: path=/data state=directory mode=0775 owner=root group=elasticsearch
