@@ -7,3 +7,9 @@
 - name: install node
   apt: name=nodejs state=latest update_cache=yes
 
+- name: install n node manager
+  npm:
+    name: 'n'
+    global: yes
+  ignore_errors: yes
+
