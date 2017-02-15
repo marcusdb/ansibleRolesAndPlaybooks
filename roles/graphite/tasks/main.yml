@@ -41,7 +41,7 @@
   template: src=files/carbon/carbon.conf.j2 dest=/usr/local/conf/carbon.conf  owner=root group=root mode=0644
 
 - name: copy carbon storage config file
-  template: src=files/carbon/storage-schemas.conf.j2 dest=/opt/graphite/conf/storage-schemas.conf  owner=root group=root mode=0644  
+  template: src=files/carbon/storage-schemas.conf.j2 dest=/usr/local/conf/storage-schemas.conf  owner=root group=root mode=0644  
 
 - name: install graphite-api dependency gunicorn
   pip: name=gunicorn
