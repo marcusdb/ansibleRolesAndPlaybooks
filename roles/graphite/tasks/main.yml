@@ -31,11 +31,14 @@
 - name: install carbon
   pip: name=carbon
 
+- name: fix for carbon issue https://github.com/graphite-project/carbon/issues/514
+  shell: cp -rv /usr/local/lib/python2.7/dist-packages/opt/graphite/lib/carbon /usr/local/bin/ && cp -rv /usr/local/lib/python2.7/dist-packages/opt/graphite/lib/twisted /usr/local/bin/
+
 - name: create graphite directory
   file: path=/opt/graphite/conf state=directory mode=0755
 
 - name: copy carbon config file
-  template: src=files/carbon/carbon.conf.j2 dest=/opt/graphite/conf/carbon.conf  owner=root group=root mode=0644
+  template: src=files/carbon/carbon.conf.j2 dest=/usr/local/conf/carbon.conf  owner=root group=root mode=0644
 
 - name: copy carbon storage config file
   template: src=files/carbon/storage-schemas.conf.j2 dest=/opt/graphite/conf/storage-schemas.conf  owner=root group=root mode=0644  
