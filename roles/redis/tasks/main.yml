@@ -1,5 +1,12 @@
 - name: install redis-server
   apt: name=redis-server update_cache=yes
 
+- name: copy redis conf file
+  template: src=templates/redis.conf dest=/etc/redis/redis.conf owner=root group=root mode=0644
+
 - name: run redis-server
   service: name=redis-server state=restarted enabled=yes
+
+
+
+  
