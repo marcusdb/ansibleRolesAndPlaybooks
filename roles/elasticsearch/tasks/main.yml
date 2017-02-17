@@ -18,13 +18,7 @@
    group=elasticsearch
    mode=0644
 
-- name: copy log configuration
-  copy:
-   src={{elasticsearch.logfile.src}}
-   dest=/etc/elasticsearch/logging.yml
-   owner=root
-   group=elasticsearch
-   mode=0644   
+ 
 
 - name: run elasticsearch
   service: name=elasticsearch state=restarted enabled=yes
