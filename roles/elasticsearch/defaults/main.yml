@@ -3,3 +3,5 @@ elasticsearch:
     src: files/elasticsearch.yml
   logfile:
     src: files/logging.yml
+elasticSearchMaxMemory: 2g
+elasticSearchInitialMemory: 2g
