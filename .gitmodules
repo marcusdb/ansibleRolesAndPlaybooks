@@ -10,3 +10,6 @@
 [submodule "roles/mongodb"]
 	path = roles/mongodb
 	url = https://github.com/marcusdb/ansible-role-mongodb
+[submodule "roles/ansible-role-nvm"]
+	path = roles/ansible-role-nvm
+	url = https://github.com/moviedo/ansible-role-nvm
