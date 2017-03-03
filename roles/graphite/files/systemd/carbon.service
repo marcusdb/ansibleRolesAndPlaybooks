@@ -1,0 +1,15 @@
+[Unit]
+Description=Carbon service
+After=network.target
+
+[Service]
+ExecStart=python /usr/local/bin/carbon-cache.py --debug start
+Restart=on-failure
+User=root
+Group=adm
+TimeoutStartSec=20
+# See http://serverfault.com/a/695863
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
