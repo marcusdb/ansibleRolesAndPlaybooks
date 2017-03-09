@@ -1,22 +1,23 @@
-#https://github.com/marcusdb/hoardd
 - name: Set node version
   set_fact:
-    node_version: 4.7.3
+    node_version: 6.9.5
 - name: set node version
   shell: ". /home/{{username_on_the_host}}/.nvm/nvm.sh && nvm alias default node {{node_version}}"
   become: no
   become_user: '{{username_on_the_host}}'
 - file:
-    src: '/home/{{username_on_the_host}}/.nvm/versions/node/v{{node_version}}/bin'
-    dest: '/usr/local/bin'    
-    owner: '{{username_on_the_host}}'
-    group: '{{username_on_the_host}}'    
+    src: '/home/{{username_on_the_host}}/.nvm/versions/node/v{{node_version}}/bin/node'
+    dest: '/usr/local/bin/node'        
+    force: yes
+    mode: 0777    
+    state: link
+- file:
+    src: '/home/{{username_on_the_host}}/.nvm/versions/node/v{{node_version}}/bin/npm'
+    dest: '/usr/local/bin/npm'        
     force: yes
     mode: 0777    
     state: link  
-
 - file: path=/opt/ state=directory mode=0755 owner='{{username_on_the_host}}'
-
 - name: Install git
   apt: name=git update_cache=yes 
 
