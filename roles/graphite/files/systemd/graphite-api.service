@@ -1,9 +1,9 @@
 [Unit]
-Description=Carbon service
+Description=Graphite API service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python /usr/local/bin/carbon-cache.py --debug start
+ExecStart=/usr/local/bin/gunicorn -w2 graphite_api.app:app -b 0.0.0.0:8888
 Restart=on-failure
 User=root
 Group=adm

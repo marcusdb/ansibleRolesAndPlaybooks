@@ -45,7 +45,7 @@ monit_process_list: []
     #script: |
 
 monit_port: 3737
-monit_address: "localhost"
+#monit_address: "localhost"
 monit_allow: ["localhost"]
 # monit_username:
 # monit_password:

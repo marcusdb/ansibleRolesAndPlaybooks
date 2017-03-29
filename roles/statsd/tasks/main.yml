@@ -1,3 +1,9 @@
+- name: Set node version
+  set_fact:
+    node_version: 6.9.5
+- name: node executables
+  shell: 'ln -sf /home/{{username_on_the_host}}/.nvm/versions/node/v{{node_version}}/bin/* /usr/local/bin/' 
+  
 - name: Install Statsd Dependencies 
   apt: name=git update_cache=yes  
 
@@ -7,13 +13,13 @@
 - name: Configure statsd
   template: src=opt/statsd/local_config.js.j2 dest=/opt/statsd/local_config.js owner=root group=root mode=0644
 
-- name: copy supervisor carbon configuration
+- name: copy systemd statsd configuration
   copy: >
-    src=files/supervisor/statsd.conf
-    dest=/etc/supervisor/conf.d/statsd.conf
+    src=files/systemd/statsd.service
+    dest=/etc/systemd/system/statsd.service
     owner=root
     group=root
     mode=0644
 
-- name: run supervisor
-  service: name=supervisor state=restarted enabled=yes
+- name: start statsd service
+  service: name="statsd" state=restarted enabled=yes 

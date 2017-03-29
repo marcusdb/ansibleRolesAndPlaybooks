@@ -55,26 +55,29 @@
   template: src=files/graphite-api/graphite-api.yaml.j2 dest=/etc/graphite-api.yaml  owner=root group=root mode=0644  
 
 
-- name: copy supervisor graphite-api configuration
+- name: copy systemd graphite-api configuration
   copy: >
-    src=files/supervisord/graphite-api.conf
-    dest=/etc/supervisor/conf.d/graphite-api.conf
+    src=files/systemd/graphite-api.service
+    dest=/etc/systemd/system/graphite-api.service
     owner=root
     group=root
     mode=0644
 
-- name: copy supervisor carbon configuration
+- name: start graphite-api service
+  service: name="graphite-api" state=restarted enabled=yes 
+
+
+- name: copy systemd carbon configuration
   copy: >
-    src=files/supervisord/carbon.conf
-    dest=/etc/supervisor/conf.d/carbon.conf
+    src=files/systemd/carbon.service
+    dest=/etc/systemd/system/carbon.service
     owner=root
     group=root
     mode=0644
 
-- name: run supervisor
-  service: name=supervisor state=stopped enabled=yes
+- name: start carbon service
+  service: name="carbon" state=restarted enabled=yes 
 
-- name: run supervisor
-  service: name=supervisor state=started enabled=yes  
+
 
 

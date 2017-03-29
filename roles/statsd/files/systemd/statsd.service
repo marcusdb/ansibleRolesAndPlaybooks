@@ -1,0 +1,14 @@
+[Unit]
+Description=statsd
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/
+ExecStart=/usr/local/bin/node /opt/statsd/stats.js /opt/statsd/local_config.js
+Restart=on-failure
+User=ubuntu
+TimeoutStartSec=20
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

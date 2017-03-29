@@ -1,0 +1,14 @@
+[Unit]
+Description=Hoardd service
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/hoardd
+ExecStart=/usr/local/bin/node start.js 
+Restart=on-failure
+User=ubuntu
+TimeoutStartSec=20
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
