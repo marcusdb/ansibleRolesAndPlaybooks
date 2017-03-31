@@ -1,42 +1,66 @@
-nvm
-========
+# Ansible Role: Node.js
 
-Install nvm and Node.js.
+[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-nodejs.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-nodejs)
 
-Requirements
-------------
+Installs Node.js on RHEL/CentOS or Debian/Ubuntu.
 
-git, curl, build-essential, libssl-dev. Requirements are installed by the role.
+## Requirements
 
-Role Variables
---------------
+Requires the EPEL repository on RedHat/CentOS (you can install it by simply adding the `geerlingguy.repo-epel` role to your playbook).
 
-* `nvm.user` Remote user. Defaults to ansible `remote_user`.
-* `nvm.version` nvm version tag, or `HEAD`. Defaults to `v0.4.0`
-* `nvm.node_version` Node.js version. Defaults to `'0.10.'`
+## Role Variables
 
-Dependencies
-------------
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-No depedencies.
+    nodejs_version: "0.12"
 
-Example Playbook
--------------------------
+The Node.js version to install. "0.12" is the default and works on all supported OSes. Other versions such as "0.10", "4.x", "5.x", and "6.x" should work on the latest versions of Debian/Ubuntu and RHEL/CentOS.
 
-    - hosts: servers
+    nodejs_install_npm_user: "{{ ansible_ssh_user }}"
+
+The user for whom the npm packages will be installed can be set here, this defaults to ansible_user
+
+    npm_config_prefix: "~/.npm-global"
+
+The global installation directory. This should be writeable by the nodejs_install_npm_user.
+
+    npm_config_unsafe_perm: "false"
+
+Set to true to suppress the UID/GID switching when running package scripts. If set explicitly to false, then installing as a non-root user will fail.
+
+    nodejs_npm_global_packages: []
+
+Add a list of npm packages with a `name` and (optional) `version` to be installed globally. For example:
+
+    nodejs_npm_global_packages:
+      # Install a specific version of a package.
+      - name: jslint
+        version: 0.9.3
+      # Install the latest stable release of a package.
+      - name: node-sass
+
+## Dependencies
+
+None.
+
+## Example Playbook
+
+    - hosts: utility
+      vars_files:
+        - vars/main.yml
       roles:
-        - role: nvm
-          nvm:
-            user: deploy
-            version: v0.4.0
-            node_version: '0.10'
+        - geerlingguy.nodejs
 
-License
--------
+*Inside `vars/main.yml`*:
 
-BSD
+    nodejs_npm_global_packages:
+      - name: jslint
+      - name: node-sass
 
-Author Information
-------------------
+## License
 
-Jarno Keskikangas
+MIT / BSD
+
+## Author Information
+
+This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).

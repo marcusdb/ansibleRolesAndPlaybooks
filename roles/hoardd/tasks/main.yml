@@ -1,9 +1,3 @@
-- name: Set node version
-  set_fact:
-    node_version: 6.9.5
-- name: node executables
-  shell: 'ln -sf /home/{{username_on_the_host}}/.nvm/versions/node/v{{node_version}}/bin/* /usr/local/bin/' 
-
 - file: path=/opt/ state=directory mode=0755 owner='{{username_on_the_host}}'
 
 - name: Install git

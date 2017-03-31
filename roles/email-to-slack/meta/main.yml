@@ -1,6 +1,0 @@
-dependencies:
-- role: ansible-role-nvm
-  nvm_user: '{{username_on_the_host}}'
-  nvm_version: "v0.33.0"
-  nvm_node_version: "6.9.5"    
-  tags: nvm 
