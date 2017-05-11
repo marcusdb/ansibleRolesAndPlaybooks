@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "email-to-slack",
+      "script": "/opt/email-to-slack/email-to-slack.js",
+      "watch": false,
+      "kill_timeout": 3600000,
+      "out_file": "/dev/null",
+      "error_file": "/dev/null"
+    }
+  ]
+}

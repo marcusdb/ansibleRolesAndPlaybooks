@@ -1,18 +1,20 @@
 - file: path=/opt/email-to-slack/ state=directory mode=0755 owner='{{username_on_the_host}}'
 - name: copy index.js
-  template: src=files/index.js dest='/opt/email-to-slack/email-to-slack.js' owner='{{username_on_the_host}}' mode=0744  
+  template: src=files/index.js dest='/opt/email-to-slack/email-to-slack.js' owner='{{username_on_the_host}}' mode=0744
 - name: copy package.json
-  template: src=files/package.json  dest='/opt/email-to-slack/package.json' owner='{{username_on_the_host}}' mode=0644    
+  template: src=files/package.json  dest='/opt/email-to-slack/package.json' owner='{{username_on_the_host}}' mode=0644
+- name: copy process.json
+  template: src=files/process.json  dest='/opt/email-to-slack/process.json' owner='{{username_on_the_host}}' mode=0644
 - name: Install PM2 global
   npm: name=pm2 global=yes
-  become_user: '{{username_on_the_host}}'  
+  become_user: '{{username_on_the_host}}'
 - name: Install npm dependencies
-  npm: 
+  npm:
     path: '/opt/email-to-slack/'
-    ignore_scripts: yes  
-  become_user: '{{username_on_the_host}}'  
-- name: pm2 start
-  shell: 'pm2 start email-to-slack.js'
+    ignore_scripts: yes
+  become_user: '{{username_on_the_host}}'
+- name: pm2 startOrReload process.json --only email-to-slack
+  shell: 'pm2 restart process.json'
   args:
     chdir: '/opt/email-to-slack'
-  become_user: '{{username_on_the_host}}'  
+  become_user: '{{username_on_the_host}}'
