@@ -13,3 +13,6 @@
 [submodule "roles/ansible-role-nvm"]
 	path = roles/ansible-role-nvm
 	url = https://github.com/moviedo/ansible-role-nvm
+[submodule "roles/ansible_zookeeper"]
+	path = roles/ansible_zookeeper
+	url = https://github.com/AnsibleShipyard/ansible-zookeeper
